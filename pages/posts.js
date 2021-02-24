@@ -1,9 +1,19 @@
 import { useRouter } from "next/router";
 import { Layout, Post, Pagination } from "../components";
+import { isTokenValid } from "../utils";
 
 const ITEMS_PER_PAGE = 5;
 
-export const getServerSideProps = async ({ query }) => {
+export const getServerSideProps = async ({ req, query }) => {
+  if (!isTokenValid(req)) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
+    };
+  }
+
   const currentPage = Math.abs(parseInt(query.page, 10)) || 1;
 
   const postsResp = await fetch(
