@@ -1,7 +1,5 @@
 import { useEffect, useReducer, useState } from "react";
-import { useRouter } from "next/router";
-import { Layout, Post, Pagination } from "../components";
-import Modal from "../components/Modal";
+import { Layout, Post, Pagination, Modal, usePagination } from "../components";
 import { isTokenValid } from "../utils";
 
 const ITEMS_PER_PAGE = 5;
@@ -64,13 +62,14 @@ const Posts = ({ postsData }) => {
   const [showModal, setShowModal] = useState(false);
   const [editedPostId, setEditedPostId] = useState(null);
 
+  const { isFirst, isLast, handlePrevPage, handleNextPage } = usePagination({
+    totalItems: count,
+    itemsPerPage: ITEMS_PER_PAGE,
+  });
+
   useEffect(() => {
     setPosts({ type: "UPDATE_POSTS", payload: postList });
   }, [postList]);
-
-  // TODO: move to hook?
-  const router = useRouter();
-  const currentPage = parseInt(router.query.page, 10) || 1;
 
   return (
     <Layout>
@@ -102,9 +101,10 @@ const Posts = ({ postsData }) => {
         </div>
       </Modal>
       <Pagination
-        currentPage={currentPage}
-        itemsPerPage={ITEMS_PER_PAGE}
-        totalItems={count}
+        onPrev={handlePrevPage}
+        onNext={handleNextPage}
+        isFirst={isFirst}
+        isLast={isLast}
       />
     </Layout>
   );

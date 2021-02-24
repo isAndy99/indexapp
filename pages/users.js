@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { Layout, UserCard, Pagination } from "../components";
+import { Layout, UserCard, Pagination, usePagination } from "../components";
 import styles from "../styles/Users.module.scss";
 
 const ITEMS_PER_PAGE = 3;
@@ -27,9 +27,10 @@ export const getServerSideProps = async ({ query }) => {
 const Users = ({ usersData }) => {
   const { users, count } = usersData;
 
-  // TODO: move to hook?
-  const router = useRouter();
-  const currentPage = parseInt(router.query.page, 10) || 1;
+  const { isFirst, isLast, handlePrevPage, handleNextPage } = usePagination({
+    totalItems: count,
+    itemsPerPage: ITEMS_PER_PAGE,
+  });
 
   return (
     <Layout>
@@ -39,9 +40,10 @@ const Users = ({ usersData }) => {
         ))}
       </ul>
       <Pagination
-        currentPage={currentPage}
-        itemsPerPage={ITEMS_PER_PAGE}
-        totalItems={count}
+        onPrev={handlePrevPage}
+        onNext={handleNextPage}
+        isFirst={isFirst}
+        isLast={isLast}
       />
     </Layout>
   );

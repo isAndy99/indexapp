@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./Modal.module.scss";
 
-const Modal = ({ children, isOpen }) => {
+export const Modal = ({ children, isOpen }) => {
   const [isBrowser, setIsBrowser] = useState(false);
 
   useEffect(() => {
@@ -19,5 +19,3 @@ const Modal = ({ children, isOpen }) => {
     ? createPortal(modalContent, document.getElementById("modal-root"))
     : null;
 };
-
-export default Modal;
