@@ -1,5 +1,12 @@
 import { useEffect, useReducer, useState } from "react";
-import { Layout, Post, Pagination, Modal, usePagination } from "../components";
+import {
+  Layout,
+  Post,
+  Modal,
+  PostForm,
+  Pagination,
+  usePagination,
+} from "../components";
 import { isTokenValid } from "../utils";
 
 const ITEMS_PER_PAGE = 5;
@@ -20,7 +27,7 @@ export const getServerSideProps = async ({ req, query }) => {
     `http://jsonplaceholder.typicode.com/posts?_start=${
       ITEMS_PER_PAGE * (currentPage - 1)
     }&_limit=${ITEMS_PER_PAGE}`
-  ); // TODO: handle error
+  );
   const posts = await postsResp.json();
 
   return {
@@ -33,7 +40,7 @@ export const getServerSideProps = async ({ req, query }) => {
   };
 };
 
-const reducer = (state, { type, payload }) => {
+const postsReducer = (state, { type, payload }) => {
   switch (type) {
     case "UPDATE_POSTS":
       return payload;
@@ -58,7 +65,7 @@ const reducer = (state, { type, payload }) => {
 const Posts = ({ postsData }) => {
   const { posts: postList, count } = postsData;
 
-  const [posts, setPosts] = useReducer(reducer, []);
+  const [posts, setPosts] = useReducer(postsReducer, []);
   const [showModal, setShowModal] = useState(false);
   const [editedPostId, setEditedPostId] = useState(null);
 
@@ -87,7 +94,7 @@ const Posts = ({ postsData }) => {
       </div>
       <Modal isOpen={showModal}>
         <div style={{ width: "500px", height: "500px", background: "white" }}>
-          <ModalContent
+          <PostForm
             postData={posts.find(({ id }) => editedPostId === id)}
             onCancel={() => {
               setShowModal(false);
@@ -95,6 +102,7 @@ const Posts = ({ postsData }) => {
             }}
             onSave={(payload) => () => {
               setPosts({ type: "EDIT_POST", payload });
+              setEditedPostId(null);
               setShowModal(false);
             }}
           />
@@ -111,27 +119,3 @@ const Posts = ({ postsData }) => {
 };
 
 export default Posts;
-
-const ModalContent = ({ postData, onCancel, onSave }) => {
-  const [title, setTitle] = useState(postData.title);
-  const [body, setBody] = useState(postData.body);
-
-  return (
-    <>
-      <label htmlFor="title">Title</label>
-      <input
-        id="title"
-        name="title"
-        onChange={(e) => setTitle(e.target.value)}
-        value={title}
-      />
-      <textarea
-        style={{ width: "100%", height: "70%", resize: "none" }}
-        onChange={(e) => setBody(e.target.value)}
-        value={body}
-      />
-      <button onClick={onCancel}>Cancel</button>
-      <button onClick={onSave({ id: postData.id, title, body })}>Save</button>
-    </>
-  );
-};
