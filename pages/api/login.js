@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-const KEY = "PRIVATE_JWT_KEY"; // TODO: move to env
+const KEY = process.env.JWT_KEY;
 
 const USERS = [
   {
