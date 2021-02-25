@@ -7,7 +7,7 @@ import {
   Pagination,
   usePagination,
 } from "../components";
-import { isTokenValid } from "../lib";
+import { isTokenValid, getPaginatedPosts } from "../lib";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -22,20 +22,11 @@ export const getServerSideProps = async ({ req, query }) => {
   }
 
   const currentPage = Math.abs(parseInt(query.page, 10)) || 1;
-
-  const postsResp = await fetch(
-    `http://jsonplaceholder.typicode.com/posts?_start=${
-      ITEMS_PER_PAGE * (currentPage - 1)
-    }&_limit=${ITEMS_PER_PAGE}`
-  );
-  const posts = await postsResp.json();
+  const postsData = await getPaginatedPosts(currentPage, ITEMS_PER_PAGE);
 
   return {
     props: {
-      postsData: {
-        posts,
-        count: postsResp.headers.get("x-total-count"),
-      },
+      postsData,
     },
   };
 };
