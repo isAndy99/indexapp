@@ -21,7 +21,7 @@ export const getServerSideProps = async ({ req, query }) => {
     };
   }
 
-  const currentPage = Math.abs(parseInt(query.page, 10)) || 1;
+  const currentPage = parseInt(query.page, 10) || 1;
   const postsData = await getPaginatedPosts(currentPage, ITEMS_PER_PAGE);
 
   return {
