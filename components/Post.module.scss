@@ -1,0 +1,39 @@
+@import "../styles/variables.scss";
+
+.post {
+  border: 1px solid $lighGray;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  padding: 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: stretch;
+
+  & > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  & > article {
+    margin-bottom: 30px;
+  }
+}
+
+.postHeader {
+  display: inline-block;
+}
+
+.postId {
+  color: $gray;
+  display: inline-block;
+}
+
+.editButton {
+  width: 80px;
+  height: 36px;
+  align-self: flex-end;
+  font-size: 14px;
+}

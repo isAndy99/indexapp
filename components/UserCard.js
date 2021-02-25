@@ -1,15 +1,15 @@
 import React from "react";
-import style from "./UserCard.module.scss";
+import styles from "./UserCard.module.scss";
 
 export const UserCard = ({ user, onClick }) => {
   return (
-    <li className={style.userCard} onClick={onClick}>
-      <div>{user.name}</div>
-      <div>{user.email}</div>
-      <div>{user.phone}</div>
-      <div>{user.username}</div>
-      <div>{user.website}</div>
-      <div>{user.company.name}</div>
-    </li>
+    <div className={styles.userCard} onClick={onClick}>
+      <div className={styles.name}>{user.name}</div>
+      <div className={styles.field}>User: {user.username}</div>
+      <div className={styles.field}>{user.email}</div>
+      <div className={styles.field}>{user.phone}</div>
+      <div className={styles.field}>Website: {user.website}</div>
+      <div className={styles.field}>Company: {user.company.name}</div>
+    </div>
   );
 };

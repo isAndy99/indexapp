@@ -1,10 +1,16 @@
 import React from "react";
+import { Button } from "../components";
+import styles from "./Post.module.scss";
 
 export const Post = ({ postData, onEdit }) => (
-  <li style={{ marginBottom: "80px" }}>
-    <h1>{postData.title}</h1>
-    <h3>{postData.userId}</h3>
+  <div className={styles.post}>
+    <div>
+      <h1 className={styles.postHeader}>{postData.title}</h1>
+      <h3 className={styles.postId}>{postData.userId}</h3>
+    </div>
     <article>{postData.body}</article>
-    <button onClick={onEdit}>Edit</button>
-  </li>
+    <Button className={styles.editButton} onClick={onEdit}>
+      Edit
+    </Button>
+  </div>
 );

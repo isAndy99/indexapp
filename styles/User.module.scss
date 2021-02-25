@@ -1,0 +1,58 @@
+@import "../styles/variables.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 65px);
+
+  padding: 40px;
+
+  h2 {
+    margin: 0;
+  }
+
+  button {
+    @media only screen and (min-width: 320px) and (max-width: 480px) {
+      width: 140px;
+    }
+  }
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+
+  label {
+    display: inline-block;
+    font-size: 1.17em;
+    margin: 18px 0;
+    font-weight: bold;
+  }
+
+  div {
+    margin: 14px 0;
+  }
+
+  > div {
+    border: 1px solid $lighGray;
+    padding: 16px;
+  }
+
+  h2 {
+    margin: 0;
+  }
+
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cancelButton {
+  margin-right: 16px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+}

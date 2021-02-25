@@ -1,9 +1,10 @@
 import { useRouter } from "next/router";
+import Head from "next/head";
 import { Layout, UserCard, Pagination, usePagination } from "../components";
 import { isTokenValid, getPaginatedUsers } from "../lib";
 import styles from "../styles/Users.module.scss";
 
-const ITEMS_PER_PAGE = 3;
+const ITEMS_PER_PAGE = 4;
 
 export const getServerSideProps = async ({ req, query }) => {
   if (!isTokenValid(req)) {
@@ -36,7 +37,10 @@ const Users = ({ usersData }) => {
 
   return (
     <Layout>
-      <ul className={styles.list}>
+      <Head>
+        <title>Users</title>
+      </Head>
+      <div className={styles.list}>
         {users.map((user) => (
           <UserCard
             key={user.id}
@@ -44,7 +48,7 @@ const Users = ({ usersData }) => {
             user={user}
           />
         ))}
-      </ul>
+      </div>
       <Pagination
         onPrev={handlePrevPage}
         onNext={handleNextPage}

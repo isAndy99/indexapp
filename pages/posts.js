@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useEffect, useReducer, useState } from "react";
 import {
   Layout,
@@ -8,6 +9,8 @@ import {
   usePagination,
 } from "../components";
 import { isTokenValid, getPaginatedPosts } from "../lib";
+
+import styles from "../styles/Posts.module.scss";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -71,7 +74,10 @@ const Posts = ({ postsData }) => {
 
   return (
     <Layout>
-      <div style={{ listStyle: "none" }}>
+      <Head>
+        <title>Posts</title>
+      </Head>
+      <div className={styles.container}>
         {posts.map((post) => (
           <Post
             key={post.id}
@@ -84,20 +90,18 @@ const Posts = ({ postsData }) => {
         ))}
       </div>
       <Modal isOpen={showModal}>
-        <div style={{ width: "500px", height: "500px", background: "white" }}>
-          <PostForm
-            postData={posts.find(({ id }) => editedPostId === id)}
-            onCancel={() => {
-              setShowModal(false);
-              setEditedPostId(null);
-            }}
-            onSave={(payload) => {
-              setPosts({ type: "EDIT_POST", payload });
-              setEditedPostId(null);
-              setShowModal(false);
-            }}
-          />
-        </div>
+        <PostForm
+          postData={posts.find(({ id }) => editedPostId === id)}
+          onCancel={() => {
+            setShowModal(false);
+            setEditedPostId(null);
+          }}
+          onSave={(payload) => {
+            setPosts({ type: "EDIT_POST", payload });
+            setEditedPostId(null);
+            setShowModal(false);
+          }}
+        />
       </Modal>
       <Pagination
         onPrev={handlePrevPage}

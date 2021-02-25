@@ -1,0 +1,46 @@
+@import "../styles/variables.scss";
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 18px 40px;
+
+  border-bottom: 1px solid $lighGray;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.active {
+  color: $mainColor;
+}
+
+.navigation {
+  flex: 1;
+}
+
+.headerLink {
+  display: inline-block;
+  font-size: 24px;
+  cursor: pointer;
+
+  &:first-child {
+    margin-right: 16px;
+  }
+
+  &:hover {
+    color: $mainColor;
+  }
+}
+
+.logoutLink {
+  display: flex;
+  align-self: center;
+
+  font-size: 16px;
+
+  cursor: pointer;
+
+  &:hover {
+    color: $mainColor;
+  }
+}

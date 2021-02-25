@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { Input, TextArea, Label } from "../components";
+import { Input, TextArea, Label, Button, InputField } from "../components";
+import {} from "./InputField";
+
+import styles from "./PostForm.module.scss";
 
 export const PostForm = ({ postData, onCancel, onSave }) => {
   const [formData, setFormData] = useState({
@@ -13,35 +16,38 @@ export const PostForm = ({ postData, onCancel, onSave }) => {
   };
 
   return (
-    <>
-      <h2>Edit Post</h2>
-      <Label htmlFor="title">Title</Label>
-      <Input
-        id="title"
-        name="title"
-        onChange={handleChange}
-        value={formData.title}
-      />
-      <br />
-      <Label htmlFor="body">Content</Label>
-      <TextArea
-        id="body"
-        name="body"
-        onChange={handleChange}
-        value={formData.body}
-      />
-      <button onClick={onCancel}>Cancel</button>
-      <button
-        onClick={() =>
-          onSave({
-            id: postData.id,
-            title: formData.title,
-            body: formData.body,
-          })
-        }
-      >
-        Save
-      </button>
-    </>
+    <div className={styles.container}>
+      <h2 className={styles.header}>Edit Post</h2>
+      <div className={styles.content}>
+        <InputField
+          id="title"
+          name="title"
+          label="Title"
+          onChange={handleChange}
+          value={formData.title}
+        />
+        <Label htmlFor="body">Content</Label>
+        <TextArea
+          id="body"
+          name="body"
+          onChange={handleChange}
+          value={formData.body}
+        />
+      </div>
+      <div className={styles.footer}>
+        <Button onClick={onCancel}>Cancel</Button>
+        <Button
+          onClick={() =>
+            onSave({
+              id: postData.id,
+              title: formData.title,
+              body: formData.body,
+            })
+          }
+        >
+          Save
+        </Button>
+      </div>
+    </div>
   );
 };

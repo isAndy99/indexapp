@@ -17,4 +17,9 @@
     border: 1px $white;
     color: $white;
   }
+
+  &:disabled {
+    pointer-events: none;
+    color: $lighGray;
+  }
 }

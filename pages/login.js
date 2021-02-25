@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Head from "next/head";
 import { useState } from "react";
 import Cookies from "js-cookie";
 
@@ -55,6 +56,9 @@ const Login = () => {
 
   return (
     <div className={styles.container}>
+      <Head>
+        <title>Login</title>
+      </Head>
       <form className={styles.loginBox} onSubmit={handleSubmit}>
         <InputField
           className={styles.userField}
