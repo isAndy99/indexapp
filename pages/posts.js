@@ -1,9 +1,10 @@
 import Head from "next/head";
 import { useEffect, useReducer, useState } from "react";
+
 import {
-  Layout,
   Post,
   Modal,
+  Layout,
   PostForm,
   Pagination,
   usePagination,

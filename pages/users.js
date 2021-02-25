@@ -1,7 +1,9 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
+
 import { Layout, UserCard, Pagination, usePagination } from "../components";
 import { isTokenValid, getPaginatedUsers } from "../lib";
+
 import styles from "../styles/Users.module.scss";
 
 const ITEMS_PER_PAGE = 4;

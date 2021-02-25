@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Input, TextArea, Label, Button, InputField } from "../components";
-import {} from "./InputField";
+import { TextArea, Label, Button, InputField } from "../components";
 
 import styles from "./PostForm.module.scss";
 

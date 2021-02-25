@@ -9,5 +9,6 @@ export * from "./TextArea";
 export * from "./Label";
 export * from "./InputField";
 export * from "./Button";
+export * from "./DataField";
 
 export * from "./hooks";

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
-import { Layout, Input, Label, Button } from "../../components";
+
+import { Layout, Button, InputField, DataField } from "../../components";
 import { isTokenValid, getUser } from "../../lib";
 
 import styles from "../../styles/User.module.scss";
@@ -46,84 +47,55 @@ const EditUser = ({ userData }) => {
 
   const editUserDetails = (
     <>
-      <div>
-        <Label htmlFor="username">Username</Label>
-        <Input
-          id="username"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-        />
-      </div>
+      <InputField
+        label="Username"
+        id="username"
+        name="username"
+        value={formData.username}
+        onChange={handleChange}
+      />
 
-      <div>
-        <Label htmlFor="name">Name</Label>
-        <Input
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-        />
-      </div>
+      <InputField
+        label="Name"
+        id="name"
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+      />
 
-      <div>
-        <Label htmlFor="email">Email</Label>
-        <Input
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-      </div>
+      <InputField
+        label="Email"
+        id="email"
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+      />
 
-      <div>
-        <Label htmlFor="phone">Phone</Label>
-        <Input
-          id="phone"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-        />
-      </div>
+      <InputField
+        label="Phone"
+        id="phone"
+        name="phone"
+        value={formData.phone}
+        onChange={handleChange}
+      />
 
-      <div>
-        <Label htmlFor="website">Website</Label>
-        <Input
-          id="website"
-          name="website"
-          value={formData.website}
-          onChange={handleChange}
-        />
-      </div>
+      <InputField
+        label="website"
+        id="website"
+        name="website"
+        value={formData.website}
+        onChange={handleChange}
+      />
     </>
   );
 
   const viewUserDetails = (
     <>
-      <div>
-        <h3>Username</h3>
-        <div>{user.username}</div>
-      </div>
-
-      <div>
-        <h3>Name</h3>
-        <div>{user.name}</div>
-      </div>
-
-      <div>
-        <h3>Email</h3>
-        <div>{user.email}</div>
-      </div>
-
-      <div>
-        <h3>Phone</h3>
-        <div>{user.phone}</div>
-      </div>
-
-      <div>
-        <h3>Website</h3>
-        <div>{user.website}</div>
-      </div>
+      <DataField label="Username">{user.username}</DataField>
+      <DataField label="Name">{user.name}</DataField>
+      <DataField label="Email">{user.email}</DataField>
+      <DataField label="Phone">{user.phone}</DataField>
+      <DataField label="Website">{user.website}</DataField>
     </>
   );
 
