@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "docker": "docker run --rm -p 3000:3000 -it $(docker build -q .)"
+    "dockerize": "docker run --rm -p 3000:3000 -it $(docker build -q .)"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
