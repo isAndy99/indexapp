@@ -72,15 +72,6 @@ const Login = () => {
         value={formData.password}
       />
       <button type="submit">Login</button>
-      {/* <button
-        onClick={(e) => {
-          e.preventDefault();
-          Cookies.remove("token");
-          router.push("/login");
-        }}
-      >
-        Logout
-      </button> */}
       {error && <span>{error}</span>}
     </form>
   );

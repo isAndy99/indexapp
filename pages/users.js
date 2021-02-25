@@ -1,10 +1,20 @@
 import { useRouter } from "next/router";
 import { Layout, UserCard, Pagination, usePagination } from "../components";
+import { isTokenValid } from "../lib";
 import styles from "../styles/Users.module.scss";
 
 const ITEMS_PER_PAGE = 3;
 
-export const getServerSideProps = async ({ query }) => {
+export const getServerSideProps = async ({ req, query }) => {
+  if (!isTokenValid(req)) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
+    };
+  }
+
   const currentPage = Math.abs(parseInt(query.page, 10)) || 1;
 
   const usersResp = await fetch(
@@ -26,6 +36,7 @@ export const getServerSideProps = async ({ query }) => {
 
 const Users = ({ usersData }) => {
   const { users, count } = usersData;
+  const router = useRouter();
 
   const { isFirst, isLast, handlePrevPage, handleNextPage } = usePagination({
     totalItems: count,
@@ -36,7 +47,7 @@ const Users = ({ usersData }) => {
     <Layout>
       <ul className={styles.list}>
         {users.map((user) => (
-          <UserCard key={user.id} user={user} />
+          <UserCard key={user.id} onEdit={() => {}} user={user} />
         ))}
       </ul>
       <Pagination

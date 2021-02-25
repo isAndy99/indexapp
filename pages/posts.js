@@ -7,7 +7,7 @@ import {
   Pagination,
   usePagination,
 } from "../components";
-import { isTokenValid } from "../utils";
+import { isTokenValid } from "../lib";
 
 const ITEMS_PER_PAGE = 5;
 

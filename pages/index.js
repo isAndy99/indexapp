@@ -1,6 +1,22 @@
 import Head from "next/head";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
+import { isTokenValid } from "../lib";
+
+export const getServerSideProps = async ({ req }) => {
+  if (!isTokenValid(req)) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/login",
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+};
 
 export default function Home() {
   return (
