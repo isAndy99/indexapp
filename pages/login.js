@@ -2,6 +2,10 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import Cookies from "js-cookie";
 
+import { InputField, Button } from "../components";
+
+import styles from "../styles/Login.module.scss";
+
 const initialFormData = {
   username: "",
   password: "",
@@ -50,30 +54,33 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="username">Username</label>
-      <input
-        type="username"
-        id="username"
-        name="username"
-        placeholder="Username"
-        required
-        onChange={handleChange}
-        value={formData.username}
-      />
-      <label htmlFor="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        placeholder="Password"
-        required
-        onChange={handleChange}
-        value={formData.password}
-      />
-      <button type="submit">Login</button>
-      {error && <span>{error}</span>}
-    </form>
+    <div className={styles.container}>
+      <form className={styles.loginBox} onSubmit={handleSubmit}>
+        <InputField
+          className={styles.userField}
+          id="username"
+          name="username"
+          required
+          onChange={handleChange}
+          value={formData.username}
+          label="Username"
+        />
+        <InputField
+          className={styles.passField}
+          label="Password"
+          type="password"
+          id="password"
+          name="password"
+          required
+          onChange={handleChange}
+          value={formData.password}
+        />
+        <Button className={styles.loginButton} type="submit">
+          Login
+        </Button>
+        {error && <div className={styles.errorField}>{error}</div>}
+      </form>
+    </div>
   );
 };
 

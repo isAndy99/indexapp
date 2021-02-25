@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Layout } from "../../components";
+import { Layout, Input, Label } from "../../components";
 import { isTokenValid, getUser } from "../../lib";
 
 export const getServerSideProps = async ({ req, params }) => {
@@ -44,40 +44,40 @@ const EditUser = ({ userData }) => {
   const editUserDetails = (
     <>
       <h2>User Details</h2>
-      <label htmlFor="username">Username</label>
-      <input
+      <Label htmlFor="username">Username</Label>
+      <Input
         id="username"
         name="username"
         value={formData.username}
         onChange={handleChange}
       />
 
-      <label htmlFor="name">Name</label>
-      <input
+      <Label htmlFor="name">Name</Label>
+      <Input
         id="name"
         name="name"
         value={formData.name}
         onChange={handleChange}
       />
 
-      <label htmlFor="email">Email</label>
-      <input
+      <Label htmlFor="email">Email</Label>
+      <Input
         id="email"
         name="email"
         value={formData.email}
         onChange={handleChange}
       />
 
-      <label htmlFor="phone">Phone</label>
-      <input
+      <Label htmlFor="phone">Phone</Label>
+      <Input
         id="phone"
         name="phone"
         value={formData.phone}
         onChange={handleChange}
       />
 
-      <label htmlFor="website">Website</label>
-      <input
+      <Label htmlFor="website">Website</Label>
+      <Input
         id="website"
         name="website"
         value={formData.website}

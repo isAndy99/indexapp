@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Input, TextArea, Label } from "../components";
 
 export const PostForm = ({ postData, onCancel, onSave }) => {
   const [formData, setFormData] = useState({
@@ -14,19 +15,18 @@ export const PostForm = ({ postData, onCancel, onSave }) => {
   return (
     <>
       <h2>Edit Post</h2>
-      <label htmlFor="title">Title</label>
-      <input
+      <Label htmlFor="title">Title</Label>
+      <Input
         id="title"
         name="title"
         onChange={handleChange}
         value={formData.title}
       />
       <br />
-      <label htmlFor="body">Content</label>
-      <textarea
+      <Label htmlFor="body">Content</Label>
+      <TextArea
         id="body"
         name="body"
-        style={{ width: "100%", height: "70%", resize: "none" }}
         onChange={handleChange}
         value={formData.body}
       />

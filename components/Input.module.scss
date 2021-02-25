@@ -1,0 +1,26 @@
+@import "../styles/variables.scss";
+
+$inputBorder: #cdd9ed;
+$inputBackground: #fff;
+$inputPlaceholder: #cbd1dc;
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  line-height: 25px;
+  font-size: 14px;
+  color: $textColor;
+  border: 1px solid $inputBorder;
+  background: $inputBackground;
+  transition: border 0.3s ease;
+
+  &::placeholder {
+    color: $inputPlaceholder;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $mainColor;
+  }
+}

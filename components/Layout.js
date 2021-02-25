@@ -9,9 +9,6 @@ export const Layout = ({ children }) => {
   return (
     <>
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-        <Link href="/">
-          <a>Dashboard</a>
-        </Link>
         <Link href="/posts">
           <a>Posts</a>
         </Link>

@@ -1,0 +1,35 @@
+@import "./variables.scss";
+
+.container {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginBox {
+  display: flex;
+  flex-direction: column;
+  height: 360px;
+  width: 300px;
+}
+
+.userField {
+  margin-bottom: 20px;
+}
+
+.passField {
+  @extend .userField;
+}
+
+.loginButton {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.errorField {
+  display: inline-block;
+  align-self: center;
+  margin-top: 16px;
+  color: $red;
+}
