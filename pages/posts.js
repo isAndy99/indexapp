@@ -85,9 +85,9 @@ const Posts = ({ postsData }) => {
           <Post
             key={post.id}
             postData={post}
-            onEdit={(id) => () => {
+            onEdit={() => {
               setShowModal(true);
-              setEditedPostId(id);
+              setEditedPostId(post.id);
             }}
           />
         ))}
@@ -100,7 +100,7 @@ const Posts = ({ postsData }) => {
               setShowModal(false);
               setEditedPostId(null);
             }}
-            onSave={(payload) => () => {
+            onSave={(payload) => {
               setPosts({ type: "EDIT_POST", payload });
               setEditedPostId(null);
               setShowModal(false);

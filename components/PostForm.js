@@ -19,7 +19,9 @@ export const PostForm = ({ postData, onCancel, onSave }) => {
         value={body}
       />
       <button onClick={onCancel}>Cancel</button>
-      <button onClick={onSave({ id: postData.id, title, body })}>Save</button>
+      <button onClick={() => onSave({ id: postData.id, title, body })}>
+        Save
+      </button>
     </>
   );
 };
